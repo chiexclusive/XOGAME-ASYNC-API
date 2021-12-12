@@ -21,7 +21,14 @@ app.use(cors());
 
 //Socket server
 const http = require("http").createServer(app);
-const io = require("socket.io")(http, {cors: {origin: "*"}});
+const io = require("socket.io")(http, {cors: {
+        origin: "https://xandogame.herokuapp.com", 
+            methods: ["GET", "POST"],
+            allowedHeaders: ["Access-Control-Allow-Origin"],
+            credentials: true
+        }});
+
+io.set("origins", "https://xandogame.herokuapp.com")
 
 const getAllConnections = () => {
     return new Promise((resolve, reject) => {
