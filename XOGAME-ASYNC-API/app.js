@@ -16,12 +16,18 @@ const cors = require("cors");
 const {nanoid} = require("nanoid");
 const fs = require("fs")
 
-app.use(cors({
-    origin: "https://xandogame.herokuapp.com",
-    optionsSuccessStatus: 200,
-    credentials: true
-}));;
 
+// app.use(cors({
+//     origin: "https://xandogame.herokuapp.com",
+//     optionsSuccessStatus: 200,
+//     credentials: true
+// }));;
+
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://xandogame.herokuapp.com");
+    res.header("Access-Control-Allow-Headers")
+    next();
+})
 
 //Socket server
 const http = require("http").createServer(app);
@@ -32,7 +38,6 @@ const io = require("socket.io")(http, {cors: {
             credentials: true
         }});
 
-io.set("origins", "https://xandogame.herokuapp.com")
 
 const getAllConnections = () => {
     return new Promise((resolve, reject) => {
