@@ -29,6 +29,10 @@ app.use((req, res, next) => {
     next();
 })
 
+app.get("/", (req, res) => {
+        res.send("XO GAME ASYNC API")
+})
+
 //Socket server
 const http = require("http").createServer(app);
 const io = require("socket.io")(http, {cors: {
