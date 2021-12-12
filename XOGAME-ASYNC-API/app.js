@@ -16,7 +16,11 @@ const cors = require("cors");
 const {nanoid} = require("nanoid");
 const fs = require("fs")
 
-app.use(cors());
+app.use(cors({
+    origin: "https://xandogame.herokuapp.com",
+    optionsSuccessStatus: 200,
+    credentials: true
+}));;
 
 
 //Socket server
